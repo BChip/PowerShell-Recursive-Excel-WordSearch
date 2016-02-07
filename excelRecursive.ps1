@@ -1,9 +1,9 @@
 ﻿# PowerShell -Recurse parameter
 Clear-Host
 Set-StrictMode -Version latest
-$path = "C:\Users\Brad\"
+$path = "C:\"
 $files = Get-Childitem $path -Include *.xls,*.xlsx –Force –Recurse –ErrorAction SilentlyContinue –ErrorVariable AccessDenied | Where-Object { !($_.psiscontainer) }
-$word = "test"
+$word = "myWord"
 $Excel = New-Object -comobject excel.application
 $Excel.visible = $False
 
@@ -15,7 +15,7 @@ foreach($file In $files){
         $found = $false
         $found = $Range.find($word)
         if($found){
-            $file | Add-Content -path "test.csv"
+            $file | Add-Content -path "report.csv"
         }
     }
     $ExcelWorkBook.close();
