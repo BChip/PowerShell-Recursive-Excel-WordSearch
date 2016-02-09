@@ -1,4 +1,4 @@
-﻿Clear-Host
+﻿﻿Clear-Host
 Set-StrictMode -Version latest
 $path = "C:\"
 $files = Get-Childitem $path -Include *.xls,*.xlsx –Force –Recurse –ErrorAction SilentlyContinue –ErrorVariable AccessDenied | Where-Object { !($_.psiscontainer) }
@@ -10,7 +10,7 @@ $count = 0
 "Location:" | Add-Content -path "excelFindings.csv"
 
 foreach($file In $files){
-	try{
+    try{
 		$ExcelWorkBook = $Excel.Workbooks.Open($file,0,$true,5,"LETMEIN",$null,$true)
 		$Worksheets = $ExcelWorkBook.worksheets
 	}
